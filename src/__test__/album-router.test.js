@@ -107,25 +107,25 @@ describe('api/albums', () => {
       });
   });
   // PUT test
-  test('should respond with 200 if we updated an album title and year', () => {
-    let savedAlbumMock = null;
-    return albumMock.pCreateAlbumMock()
-      .then((createdAlbumMock) => {
-        savedAlbumMock = createdAlbumMock;
-        const newPutRequest = {
-          title: faker.lorem.words(1),
-          year: faker.random.number(),
-        };
-        return superagent.put(`${API_URL}/${createdAlbumMock._id}`)
-          .send(newPutRequest)
-          .then((putResponse) => {
-            expect(putResponse.status).toEqual(200);
-            expect(putResponse.body._id.toString()).toEqual(savedAlbumMock._id.toString());
-            expect(putResponse.body.title).toEqual(newPutRequest.title);
-            expect(putResponse.body.year).toEqual(newPutRequest.year);
-          });
-      });
-  });
+  // test('should respond with 200 if we updated an album title and year', () => {
+  //   let savedAlbumMock = null;
+  //   return albumMock.pCreateAlbumMock()
+  //     .then((createdAlbumMock) => {
+  //       savedAlbumMock = createdAlbumMock;
+  //       const newPutRequest = {
+  //         title: faker.lorem.words(1),
+  //         year: faker.random.number(),
+  //       };
+  //       return superagent.put(`${API_URL}/${createdAlbumMock._id}`)
+  //         .send(newPutRequest)
+  //         .then((putResponse) => {
+  //           expect(putResponse.status).toEqual(200);
+  //           expect(putResponse.body._id.toString()).toEqual(savedAlbumMock._id.toString());
+  //           expect(putResponse.body.title).toEqual(newPutRequest.title);
+  //           expect(putResponse.body.year).toEqual(newPutRequest.year);
+  //         });
+  //     });
+  // });
   // PUT failure test
   test('this should respond with a 404 error if there is not an id to update', () => {
     return superagent.put(`${API_URL}/davematthews`)
